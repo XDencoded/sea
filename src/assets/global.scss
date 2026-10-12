@@ -1,0 +1,48 @@
+@use './variables' as *;
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+html{
+	font-size: 18px;
+}
+body{
+	overflow-x: hidden;
+	font-family: var(--font-education);
+}
+
+header {
+  max-width: var(--w);
+	margin: 0 auto;
+  height: 150px;
+  color: var(--color-dark-blue);
+	padding: 0 var(--p);
+	background-color: var(--color-white);
+	position: relative;
+	z-index: 1000;
+}
+main{
+	width: 100%;
+	background: var(--color-dark-blue);
+	padding: 0 var(--p);
+}
+footer{
+	position: relative;
+	width: 100%;
+	height: 100vh;
+	padding: 250px 0 0 0;
+	z-index: 2000;
+	overflow: hidden;
+	background: center/cover no-repeat url('/items/footer.svg');
+}
+.calendar {
+	
+	margin: 100px auto;
+}
+a{
+	transition: .3s;
+	text-decoration: none;
+}
+

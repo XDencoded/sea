@@ -1,0 +1,56 @@
+@font-face {
+	font-family: 'education';
+	src: url('../../public/fonts/Educational_gothic/EducationalGothic-Regular.otf') format('opentype');
+	font-weight: 300;
+	font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+	font-family: 'bebasneuecyrillic';
+	src: url('../../public/fonts/Bebasneuecyrillic/bebasneuecyrillic.ttf') format('truetype');
+	font-weight: 300;
+	font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+	font-family: 'bluecurva';
+	src: url('../../public/fonts/Bluecurve/Bluecurve-Light.ttf') format('truetype');
+	font-weight: 200;
+	font-style: light;
+  font-display: swap;
+}
+@font-face {
+	font-family: 'bluecurva';
+	src: url('../../public/fonts/Bluecurve/Bluecurve-Regular.ttf') format('truetype');
+	font-weight: 300;
+	font-style: normal;
+  font-display: swap;
+}
+@font-face {
+	font-family: 'bluecurva';
+	src: url('../../public/fonts/Bluecurve/Bluecurve-Bold.ttf') format('truetype');
+	font-weight: 500;
+	font-style: bold;
+  font-display: swap;
+}
+
+
+
+:root{ 
+    --font-bluecurva: 'bluecurva';
+    --font-education: 'education';
+		--font-bebasneuecyrillic: 'bebasneuecyrillic';
+
+		--color-white: #FFFFFF; /* Светло-голубой */ 
+    --color-cream: #FCF0D6;    /* Светло-кремовый фон */
+    --color-dark-red: #710004; /* Темно-бордовый/красный */
+    --color-bright-red: #B40023; /* Яркий акцентный красный */
+    --color-black: #000000;    /* Черный для текста */
+    --color-dark-blue: #05334A; /* Темно-синий/морской */
+    --color-white-blue: #6B9EBD;
+
+    --w: 1440px;
+    --p: 20px;
+}

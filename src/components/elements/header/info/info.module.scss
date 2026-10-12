@@ -1,0 +1,24 @@
+.info {
+  position: relative;
+  width: 100%;
+  background-color: var(--color-dark-red);
+  overflow: hidden;
+  padding: 10px 0;
+  font-family: var(--font-bluecurva);
+  user-select: none;
+
+  .textContainer {
+    display: flex;
+    white-space: nowrap;
+    will-change: transform;
+
+    .text {
+			position: relative;
+      display: inline-block;
+      text-transform: uppercase;
+      font-size: 26px;
+      color: var(--color-white);
+      margin-right: 50px;
+    }
+  }
+}

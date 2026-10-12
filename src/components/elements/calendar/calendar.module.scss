@@ -1,0 +1,606 @@
+
+
+* {
+  box-sizing: border-box;
+}
+
+// Основной контейнер календаря
+.cal {
+  max-width: var(--w);
+  padding: 0 var(--p);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  font-family: var(--font-bluecurva);
+
+  .title {
+    font-size: 68px;
+    -webkit-text-stroke: 1px var(--color-dark-red);
+    color: var(--color-white);
+  }
+
+  .date {
+    font-size: 46px;
+    color: var(--color-dark-red);
+  }
+}
+
+// Переменные для адаптивности
+$breakpoint-mobile: 768px;
+$breakpoint-tablet: 1024px;
+
+// Основные стили контейнера
+.calendarContainer {
+  max-width: 100%;
+}
+
+// Заголовок календаря
+.calendarHeader {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  margin-bottom: 20px;
+  gap: 16px;
+  h2{
+    text-align: center; 
+    min-width: 104px;
+  }
+
+  @media (min-width: $breakpoint-tablet) {
+    margin-bottom: 24px;
+  }
+}
+
+.monthTitle {
+  font-size: 40px;
+  font-weight: 300;
+  
+  color: var(--color-dark-red);
+  margin: 0;
+
+  @media (min-width: $breakpoint-tablet) {
+    font-size: 70px;
+  }
+}
+
+.navigation {
+  display: flex;
+  gap: 8px;
+}
+
+.navButton {
+background: var(--color-dark-blue);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  color: white;
+  transition: transform .3s;
+
+  &:hover {
+    opacity: .9;
+    transform: scale(1.05);
+  }
+}
+
+// Макет календаря
+.calendarLayout {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  @media (min-width: $breakpoint-tablet) {
+    flex-direction: row;
+    gap: 24px;
+  }
+}
+
+// Боковая панель
+.sidebar {
+  width: 100%;
+
+  @media (min-width: $breakpoint-tablet) {
+    width: 30%;
+    padding-right: 16px;
+  }
+}
+
+.sectionTitle {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--color-dark-red);
+  margin-bottom: 12px;
+
+  @media (min-width: $breakpoint-tablet) {
+    font-size: 36px;
+    font-weight: 200;
+    margin-bottom: 16px;
+  }
+}
+
+// Список событий
+.eventsList {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px 0;
+
+  @media (min-width: $breakpoint-tablet) {
+    margin-bottom: 24px;
+  }
+}
+
+.eventItem {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  padding: 4px 0;
+  font-size: 18px;
+
+  @media (min-width: $breakpoint-tablet) {
+    font-size: 21px;
+    font-weight: 100;
+  }
+}
+
+.eventTheme {
+  width: 8px;
+  height: 8px;
+  border-radius: 20px;
+  margin-right: 8px;
+  flex-shrink: 0;
+}
+
+// Контейнер тем
+.themesContainer {
+ display: flex;
+    gap: 8px;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+    max-width: 300px;
+}
+
+.themeBadge {
+  padding: 6px 12px;
+  border-radius: 20px;
+  color: white;
+  font-size: 21px;
+  font-weight: 500;
+  text-align: center;
+
+  @media (min-width: $breakpoint-tablet) {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+}
+
+// Контейнер сетки календаря
+.calendarGridContainer {
+  width: 100%;
+
+  @media (min-width: $breakpoint-tablet) {
+    width: 70%;
+  }
+}
+
+// Дни недели
+.weekDays {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.weekDay {
+  text-align: center;
+  font-weight: 600;
+  color: var(--color-dark-blue);
+  font-size: 12px;
+  flex: 1;
+
+  @media (min-width: $breakpoint-mobile) {
+    font-size: 14px;
+  }
+}
+
+// Календарная сетка на Flexbox
+.calendarGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  justify-content: space-between;
+}
+
+// Дни календаря - всегда круглые
+.calendarDay,
+.calendarDayWithEvent,
+.calendarDayOther {
+  position: relative;
+  flex: 0 0 calc(14.2857% - 4px);
+  aspect-ratio: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--color-dark-blue);
+  border-radius: 20px;
+  transition: all 0.2s;
+  min-width: 35px;
+  min-height: 35px;
+
+  @media (min-width: $breakpoint-mobile) {
+    min-width: 35px;
+    min-height: 35px;
+  }
+
+  @media (min-width: $breakpoint-tablet) {
+    min-width: 35px;
+    min-height: 35px;
+    flex: 0 0 calc(14.2857% - 6px);
+  }
+}
+
+// Дни с событиями
+.calendarDayWithEvent {
+  background-color: #6b9ebd50;
+
+
+  &:hover {
+    background-color: #6b9ebd70;
+    cursor: pointer;
+    transform: scale(1.02);
+  }
+}
+
+// Дни из других месяцев
+.calendarDayOther {
+  color: #999;
+  user-select: none;
+  background: repeating-linear-gradient(
+    -45deg,
+    #f0f0f0,
+     #f0f0f0,
+     10px,
+    #ffffff 10px,
+     #ffffff 20px
+  );
+  border: 1px solid #f0f0f0;
+}
+
+// Номера дней
+.dayNumber,
+.dayNumberWithEvent {
+  font-size: 28px;
+  line-height: 1;
+  text-align: center;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+    user-select: none;
+
+  @media (min-width: $breakpoint-mobile) {
+    font-size: 26px;
+  }
+}
+
+.dayNumberWithEvent {
+  font-weight: 600;
+  color: var(--color-dark-blue);
+}
+
+// Индикаторы событий
+.eventIndicators {
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.eventIndicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+// Модальные окна
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 16px;
+
+  @media (min-width: $breakpoint-mobile) {
+    padding: 24px;
+  }
+}
+
+.modal {
+  background-color: white;
+  padding: 20px;
+  border-radius: 12px;
+  max-width: 90%;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+
+  @media (min-width: $breakpoint-mobile) {
+    max-width: 400px;
+    padding: 24px;
+  }
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.modalTitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-dark-red);
+  margin: 0;
+
+  @media (min-width: $breakpoint-mobile) {
+    font-size: 20px;
+  }
+}
+
+.modalClose {
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: #666;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+
+  &:hover {
+    color: #333;
+  }
+}
+
+.modalContent {
+  margin-bottom: 20px;
+}
+
+.eventTitle {
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0 0 8px 0;
+
+  @media (min-width: $breakpoint-mobile) {
+    font-size: 18px;
+  }
+}
+
+.eventDate {
+  color: #666;
+  margin: 0 0 12px 0;
+  font-size: 14px;
+}
+
+.modalActions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+// Формы
+.formGroup {
+  margin-bottom: 16px;
+}
+
+.formLabel {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 500;
+  color: #333;
+  font-size: 14px;
+}
+
+.formInput {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+
+  &:focus {
+    outline: none;
+    border-color: var(--color-dark-red);
+  }
+}
+
+// Кнопки
+.buttonPrimary {
+  padding: 10px 20px;
+  background-color: var(--color-dark-red);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s;
+  flex: 1;
+  min-width: 100px;
+
+  &:hover {
+    background-color: #6b1a25;
+  }
+
+  @media (min-width: $breakpoint-mobile) {
+    flex: 0 1 auto;
+  }
+}
+
+.buttonSecondary {
+  padding: 10px 20px;
+  background-color: #f0f0f0;
+  color: #333;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s;
+  flex: 1;
+  min-width: 100px;
+
+  &:hover {
+    background-color: #e0e0e0;
+  }
+
+  @media (min-width: $breakpoint-mobile) {
+    flex: 0 1 auto;
+  }
+}
+
+// Цвета тем
+.themeSport {
+  background-color: #0d9488;
+}
+
+.themeCreativity {
+  background-color: var(--color-dark-red);
+}
+
+.themeScience {
+  background-color: #60a5fa;
+}
+
+// Адаптивность для мобильных устройств
+@media (max-width: $breakpoint-mobile) {
+  .calendarLayout {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    order: 2;
+  }
+
+  .calendarGridContainer {
+    order: 1;
+  }
+
+  .weekDays {
+    display: none;
+  }
+}
+
+// Дополнительные улучшения для очень маленьких экранов
+@media (max-width: 400px) {
+  .calendarContainer {
+    padding: 12px;
+  }
+
+  .monthTitle {
+    font-size: 20px;
+  }
+
+  .navButton {
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+
+  .modal {
+    max-width: 95%;
+    padding: 16px;
+  }
+}
+
+// Для планшетов
+@media (min-width: $breakpoint-tablet) and (max-width: $breakpoint-tablet) {
+  .calendarGrid {
+    gap: 6px;
+  }
+
+  .calendarDay,
+  .calendarDayWithEvent,
+  .calendarDayOther {
+    flex: 0 0 calc(14.2857% - 8px);
+  }
+}
+
+// Для больших экранов
+@media (min-width: 1400px) {
+  .calendarContainer {
+    max-width: 1400px;
+  }
+
+  .calendarDay,
+  .calendarDayWithEvent,
+  .calendarDayOther {
+    min-width: 60px;
+    min-height: 60px;
+  }
+
+  .dayNumber,
+  .dayNumberWithEvent {
+    font-size: 28px;
+  }
+
+  .weekDay {
+    font-size: 16px;
+  }
+}
+
+// Анимации
+.calendarDay {
+  transition: all 0.2s ease;
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+.modal {
+  animation: modalFadeIn 0.3s ease;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Скроллбар для модальных окон
+.modal::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modal::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.modal::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
+}
+
+.modal::-webkit-scrollbar-thumb:hover {
+  background: #aaa;
+}
